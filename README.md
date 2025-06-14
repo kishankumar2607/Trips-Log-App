@@ -25,7 +25,7 @@ A multi-step ASP.NET Core MVC web application for tracking your travel adventure
    Example for LocalDB:  
    ```json
    "ConnectionStrings": {
-     "DefaultConnection": "Server=(localdb)\mssqllocaldb;Database=TripLogAppDatabase;Trusted_Connection=True;MultipleActiveResultSets=true"
+     "DefaultConnection": `Server=(localdb)\mssqllocaldb;Database=TripLogAppDatabase;Trusted_Connection=True;MultipleActiveResultSets=true`
    }
    ```
 

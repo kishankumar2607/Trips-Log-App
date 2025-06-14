@@ -1,0 +1,78 @@
+﻿@model List<TripsLogApp.Models.Trip>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<a href="@Url.Action("Add", "Trip")" class="d-inline-block fw-bold btn btn-light my-3 px-4 rounded-pill border-1 border-dark shadow-sm">Add Trip</a>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle shadow-sm rounded-3 overflow-hidden">
+        <thead style="background: linear-gradient(90deg, #000000 0%, #40352b 100%); color: #fff;">
+            <tr style="font-size: 1.1rem;">
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Accommodations</th>
+                <th>Things To Do</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+                <tr>
+                    <td class="fw-bold text-black" style="font-size:1.08rem;">
+                        @t.Destination
+                    </td>
+                    <td>@t.StartDate.ToString("MMM dd, yyyy")</td>
+                    <td>@t.EndDate.ToString("MMM dd, yyyy")</td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(t.Accommodation))
+                        {
+                            <div class="fw-semibold">@t.Accommodation</div>
+                            <div>
+                                @if (!string.IsNullOrWhiteSpace(t.AccommodationPhone))
+                                {
+                                    <div>
+                                        <span class="fw-bold">Phone:</span>
+                                        <span> @t.AccommodationPhone</span>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(t.AccommodationEmail))
+                                {
+                                    <div>
+                                        <span class="fw-bold">Email:</span>
+                                        <span> @t.AccommodationEmail</span>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-muted fst-italic">N/A</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column gap-1">
+                            @if (!string.IsNullOrWhiteSpace(t.ThingToDo1))
+                            {
+                                <span class="px-2 py-1 rounded-pill bg-light border text-primary-emphasis">@t.ThingToDo1</span>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(t.ThingToDo2))
+                            {
+                                <span class="px-2 py-1 rounded-pill bg-light border text-primary-emphasis">@t.ThingToDo2</span>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(t.ThingToDo3))
+                            {
+                                <span class="px-2 py-1 rounded-pill bg-light border text-primary-emphasis">@t.ThingToDo3</span>
+                            }
+                            @if (string.IsNullOrWhiteSpace(t.ThingToDo1) && string.IsNullOrWhiteSpace(t.ThingToDo2) && string.IsNullOrWhiteSpace(t.ThingToDo3))
+                            {
+                                <span class="text-muted fst-italic">N/A</span>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
